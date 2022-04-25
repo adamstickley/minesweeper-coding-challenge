@@ -23,13 +23,13 @@ export default class Board {
     bombs;
 
     constructor(gridSize, bombs) {
-        this.bestTimeDOM.innerHTML = this.getBestWinFromLocationStorage() || 'No wins yet';
         this.board = document.getElementById('board');
         this.bombsRemaining = bombs;
         this.bombsRemainingDOM.innerHTML = this.bombsRemaining;
         this.bombs = bombs;
         this.width = gridSize;
         this.height = gridSize;
+        this.bestTimeDOM.innerHTML = this.getBestWinFromLocationStorage() || 'No wins yet';
         this.makeGrid();
     }
 
@@ -57,7 +57,7 @@ export default class Board {
         if (winsStorage !== null) {
             winArray = JSON.parse(winsStorage);
         }
-        winArray.filter(w => w.gridSize === this.width).sort((a, b) => a.time - b.time);
+        winArray = winArray.filter(w => w.gridSize === this.width).sort((a, b) => a.time - b.time);
         return winArray.length ? winArray[0] : null;
     }
 
