@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minesweeper</title>
+    <style>
+        body {
+            margin-top: 80px;
+        }
+
+        .menu {
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #adadad;
+            border-bottom: 1px solid #ccc;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu > div {
+            padding: 0 20px;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-left > div {
+            padding: 0 20px;
+        }
+
+        .bomb-title {
+            white-space: nowrap;
+        }
+
+        .settings {
+            display: flex;
+            align-items: center;
+        }
+
+        .settings > div {
+            padding: 0 20px;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .cell {
+            height: 50px;
+            width: 50px;
+            border: 1px solid black;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cell.revealed {
+            background-color: #ccc;
+        }
+
+        .cell.bomb {
+            background-color: red;
+        }
+
+        .cell.lost {
+            border: 1px solid red;
+        }
+
+        .cell.bad-flag {
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+
+        .cell-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            color: #333;
+        }
+        input {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<script type="module" src="minesweeper.js"></script>
+<div class="menu">
+    <div class="menu-left">
+        <h3><span>Minesweeper</span></h3>
+        <div>
+            <span class="bomb-title">Bombs Remaining: <span id="bombs-remaining">10</span></span>
+        </div>
+        <div>
+            <span class="time-title">Timer: <span id="timer">0</span>s</span>
+        </div>
+        <div>
+            <span class="time-title">Best time: <span id="best-time">No wins yet</span>s</span>
+        </div>
+    </div>
+    <div class="settings">
+        <div>
+            Grid Width:<input type="number" id="board-size" value="8" />
+        </div>
+        <div>
+            Bombs:<input type="number" id="bombs" value="10" />
+        </div>
+        <div>
+            <button id="new-game">New Game</button>
+        </div>
+    </div>
+</div>
+<div id="board"></div>
+</body>
+</html>
