@@ -29,7 +29,7 @@ export default class Board {
         this.bombs = bombs;
         this.width = gridSize;
         this.height = gridSize;
-        this.bestTimeDOM.innerHTML = this.getBestWinFromLocationStorage() || 'No wins yet';
+        this.bestTimeDOM.innerHTML = this.getBestWinFromLocationStorage();
         this.makeGrid();
     }
 
@@ -46,6 +46,7 @@ export default class Board {
         }
         winArray.push({
             gridSize: this.width,
+            bombs: this.bombs,
             time: time || 0.1 // min time
         });
         localStorage.setItem("wins", JSON.stringify(winArray));
@@ -57,8 +58,8 @@ export default class Board {
         if (winsStorage !== null) {
             winArray = JSON.parse(winsStorage);
         }
-        winArray = winArray.filter(w => w.gridSize === this.width).sort((a, b) => a.time - b.time);
-        return winArray.length ? winArray[0] : null;
+        winArray = winArray.filter(w => w.gridSize === this.width && w.bombs === this.bombs).sort((a, b) => a.time - b.time);
+        return `(Grid ${this.width} | Bombs ${this.bombs}) ${winArray.length ? winArray[0].time : 'No wins yet'}`;
     }
 
     startTimer() {
