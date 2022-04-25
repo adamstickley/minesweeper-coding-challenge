@@ -17,6 +17,11 @@ export default class Game {
             return;
         }
 
+        if(gridSize > 50) {
+            alert("Board size cannot be greater than 50");
+            return;
+        }
+
         document.getElementById('board').innerHTML = '';
         this.board = new Board(gridSize, bombs);
     }
